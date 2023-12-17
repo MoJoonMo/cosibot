@@ -1,0 +1,27 @@
+1) npm init -y // nodejs init
+2) npm install express // install express
+3) npm i -D typescript @types/express @types/node // install typescript
+4) npx tsc --init // tsconfig.json 파일 생성
+
+5) index.ts 파일 생성
+
+/*
+import express, { Express, Request, Response } from 'express';
+
+const app: Express = express();
+const port = 5000;
+
+app.get('/', (req: Request, res: Response) => {
+  res.send('Typescript + Node.js + Express Server');
+});
+
+app.listen(port, () => {
+  console.log(`[server]: Server is running at <https://localhost>:${port}`);
+});
+*/
+
+
+6) npm install -D concurrently nodemon // nodemon 설치
+
+
+7) npm install @remote-kakao/core // remote-kakao 설치
