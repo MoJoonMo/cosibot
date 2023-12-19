@@ -1,0 +1,4 @@
+/* version이 안맞으면 window node version을 nvm 으로 맞춰준다 */
+1) sudo yum install nodejs npm // 서버에 nodejs 설치
+2) git clone https://github.com/MoJoonMo/cosibot.git
+3) G:\remote-kakao\server\node_modules\openai\index.js 의 52번째줄 OPENAI_API_KEY 를 "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"로 변경

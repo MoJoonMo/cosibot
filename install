@@ -22,6 +22,14 @@ app.listen(port, () => {
 
 
 6) npm install -D concurrently nodemon // nodemon 설치
-
-
 7) npm install @remote-kakao/core // remote-kakao 설치
+/* 아래는 git 설정*/
+8) git config --global user.email slayerzone8@gmail.com 
+9) git init
+10) git add .
+11) git commit -m "commit comment"
+13) git branch -M main
+12) git remote add origin https://github.com/MoJoonMo/cosibot.git
+14) git push -u origin main
+
+
