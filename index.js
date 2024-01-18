@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const openai_1 = __importDefault(require("openai"));
 const chuop_1 = require("./function/simulator/chuop");
 const core_1 = require("@remote-kakao/core");
+const request = require('request');
 // ChatGPT 시작
 const openai = new openai_1.default();
 function gpt_question(p_role, p_content) {
@@ -47,21 +48,22 @@ server.on("message", (msg) => __awaiter(void 0, void 0, void 0, function* () {
         const timestamp = Date.now();
         yield msg.replyText("Pong!");
         msg.replyText(`${Date.now() - timestamp}ms`);
-    }
-    else if (cmd === "gpt") {
-        const p_role = "system";
-        let p_content = "";
-        if (args.length >= 1) {
-            p_content = msg.content.split(prefix.concat(cmd))[1];
-            const rep = yield gpt_question(p_role, p_content);
-            console.log(msg);
-            console.log(rep);
-            msg.replyText(msg.sender.name + "님의 질문\nQ. " + p_content + "\n\n" + rep);
-        }
-        else {
-            msg.replyText("질문이 없습니다.");
-        }
-    }
+    } /*else if (cmd === "gpt"){
+      const p_role = "system";
+      let p_content= "";
+      
+      if (args.length >=1){
+        p_content = msg.content.split(prefix.concat(cmd))[1];
+        const rep: any = await gpt_question(p_role,p_content);
+
+        console.log(msg);
+        console.log(rep);
+        
+        msg.replyText(msg.sender.name + "님의 질문\nQ. " + p_content + "\n\n"+  rep);
+      }else {
+        msg.replyText("질문이 없습니다.");
+      }
+    }*/
     else if (cmd === "추옵") {
         const a = yield (0, chuop_1.calcChuop)(msg.content);
         msg.replyText(a);
@@ -69,6 +71,18 @@ server.on("message", (msg) => __awaiter(void 0, void 0, void 0, function* () {
     else if (cmd === "추옵시뮬") {
         const a = yield (0, chuop_1.calcChuopSimulator)(msg.content);
         msg.replyText(a);
+    }
+    else if (cmd === "환산") {
+        const options = {
+            uri: "https://api.maplescouter.com/api/id",
+            qs: {
+                name: '아델',
+                date: '2024-01-17'
+            }
+        };
+        request(options, function (err, response, body) {
+            msg.replyText(body);
+        });
     }
 }));
 server.start();
