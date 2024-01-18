@@ -63,7 +63,7 @@ server.on("message", async (msg) => {
       msg.replyText(a);
     }else if(cmd === "환산"){
       const options = {
-        uri: "http://www.kma.go.kr/wid/queryDFS.jsp",
+        uri: "https://api.maplescouter.com/api/id",
         qs:{
           name:'아델',
           date:'2024-01-17'
