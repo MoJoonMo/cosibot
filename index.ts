@@ -2,6 +2,8 @@ import OpenAI from "openai";
 import { calcChuop, calcChuopSimulator } from "./function/simulator/chuop";
 import { UDPServer } from "@remote-kakao/core";
 
+const request = require('request');
+
 // ChatGPT 시작
 const openai = new OpenAI();
 
@@ -59,9 +61,17 @@ server.on("message", async (msg) => {
     }else if(cmd === "추옵시뮬"){
       const a = await calcChuopSimulator(msg.content);
       msg.replyText(a);
-    }else if(cmd === "날씨"){
-      
-
+    }else if(cmd === "환산"){
+      const options = {
+        uri: "http://www.kma.go.kr/wid/queryDFS.jsp",
+        qs:{
+          name:'아델',
+          date:'2024-01-17'
+        }
+      };
+      request(options,function(err : any,response : any,body : any){
+        msg.replyText(body);
+      });
     }
     
 });
