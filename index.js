@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const openai_1 = __importDefault(require("openai"));
+const chuop_1 = require("./function/simulator/chuop");
 const core_1 = require("@remote-kakao/core");
 // ChatGPT 시작
 const openai = new openai_1.default();
@@ -30,7 +31,7 @@ function gpt_question(p_role, p_content) {
 }
 //ChatGPT 끝
 // remote kakao 설정 시작
-const prefix = "!";
+const prefix = ">";
 const server = new core_1.UDPServer({ serviceName: "Example Service" });
 server.on("message", (msg) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
@@ -60,6 +61,14 @@ server.on("message", (msg) => __awaiter(void 0, void 0, void 0, function* () {
         else {
             msg.replyText("질문이 없습니다.");
         }
+    }
+    else if (cmd === "추옵") {
+        const a = yield (0, chuop_1.calcChuop)(msg.content);
+        msg.replyText(a);
+    }
+    else if (cmd === "추옵시뮬") {
+        const a = yield (0, chuop_1.calcChuopSimulator)(msg.content);
+        msg.replyText(a);
     }
 }));
 server.start();
