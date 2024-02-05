@@ -268,6 +268,8 @@ async function calcChuopDetail(type:number, lvl:number){ // type 1 = 강환불 /
 
     return ret;    
 }
+
+
 export {calcChuop, calcChuopSimulator}
  
         /*
